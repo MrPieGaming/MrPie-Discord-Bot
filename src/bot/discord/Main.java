@@ -32,6 +32,7 @@ public class Main {
         builder.addEventListener(new ReadyListener(), new CommandListener());
 
         // This is a comment for the new 'developing' branch. :)
+        // This is another comment for the 'developing' branch.
 
         try {
             jda = builder.buildBlocking();
