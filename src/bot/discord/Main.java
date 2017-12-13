@@ -32,7 +32,6 @@ public class Main {
 
         builder.addEventListener(new ReadyListener(), new CommandListener());
 
-        // a comment in main.java
         try {
             jda = builder.buildBlocking();
         } catch (LoginException | InterruptedException | RateLimitedException e) {
