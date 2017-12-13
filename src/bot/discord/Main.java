@@ -31,6 +31,8 @@ public class Main {
 
         builder.addEventListener(new ReadyListener(), new CommandListener());
 
+        // lets add a comment just for fun. oh and look at the time, it's pretty late.
+
         try {
             jda = builder.buildBlocking();
         } catch (LoginException | InterruptedException | RateLimitedException e) {
