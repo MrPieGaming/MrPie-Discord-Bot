@@ -1,6 +1,6 @@
 package bot.discord.Commands;
 
-import bot.discord.Command;
+import bot.discord.Interfaces.Command;
 import com.lvack.championggwrapper.ChampionGGAPIFactory;
 import com.lvack.championggwrapper.data.base.role.RoleData;
 import com.lvack.championggwrapper.data.champion.HighLevelChampionData;

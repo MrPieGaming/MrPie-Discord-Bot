@@ -1,6 +1,6 @@
 package bot.discord.Commands;
 
-import bot.discord.Command;
+import bot.discord.Interfaces.Command;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class Ping implements Command {

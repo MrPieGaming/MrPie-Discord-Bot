@@ -2,6 +2,7 @@ package bot.discord;
 
 import bot.discord.Commands.Champion;
 import bot.discord.Commands.Ping;
+import bot.discord.Interfaces.Command;
 import bot.discord.Listeners.CommandListener;
 import bot.discord.Listeners.ReadyListener;
 import bot.discord.Utils.CommandParser;
