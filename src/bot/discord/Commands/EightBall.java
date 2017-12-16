@@ -3,7 +3,7 @@ package bot.discord.Commands;
 import bot.discord.Interfaces.Command;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
-public class Motivation implements Command {
+public class EightBall implements Command {
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
         return true;
