@@ -19,7 +19,7 @@ public class EightBall implements Command {
             TextChannel channel = event.getTextChannel();
             String[] arguments = event.getMessage().getContent().split(" ");
 
-            String[] goodWords = {"can", "am", "is", "are", "do"};
+            String[] goodWords = {"can", "am", "is", "are", "do", "will"};
             String firstWord = arguments[1];
 
             boolean condition = false;
@@ -44,19 +44,11 @@ public class EightBall implements Command {
                         break;
                     }
                     case 2: {
-                        channel.sendMessage("Ask again later").queue();
+                        channel.sendMessage("I'm not sure").queue();
                         break;
                     }
                     case 3: {
-                        channel.sendMessage("Maybe").queue();
-                        break;
-                    }
-                    case 4: {
-                        channel.sendMessage("If you try hard enough").queue();
-                        break;
-                    }
-                    case 5: {
-                        channel.sendMessage("I'm not sure").queue();
+                        channel.sendMessage("If they try hard enough").queue();
                         break;
                     }
                     default: {
@@ -79,6 +71,6 @@ public class EightBall implements Command {
     }
 
     private int genRandomInt() {
-        return (int) (Math.random() * 6);
+        return (int) (Math.random() * 4);
     }
 }

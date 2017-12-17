@@ -21,8 +21,9 @@ public class Help implements Command {
                 "- Ping\n" +
                 "- Champion\n" +
                 "- 8ball\n" +
-                "\n" +
-                "**To find the usage of a command, type ~usage <command>**\n" +
+                "- Help\n" +
+                "- Usage\n" +
+                "\n**To find the usage of a command, type ~usage <command>**\n" +
                 "```").queue();
     }
 

@@ -16,17 +16,32 @@ public class Usage implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         String message = event.getMessage().getContent();
+
         String[] arguments = message.split(" ");
-        String command = arguments[1];
+        String commandName = arguments[1].toLowerCase();
+
         TextChannel channel = event.getTextChannel();
 
-        switch (command) {
+        switch (commandName) {
             case "ping": {
                 channel.sendMessage(Ping.help()).queue();
                 break;
             }
             case "champion": {
                 channel.sendMessage(Champion.help()).queue();
+                break;
+            }
+            case "8ball": {
+                channel.sendMessage(EightBall.help()).queue();
+                break;
+            }
+            case "help": {
+                channel.sendMessage(Help.help()).queue();
+                break;
+            }
+            default: {
+                channel.sendMessage(Usage.help()).queue();
+                break;
             }
         }
     }
