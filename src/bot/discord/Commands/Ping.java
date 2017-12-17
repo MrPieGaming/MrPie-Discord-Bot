@@ -4,7 +4,7 @@ import bot.discord.Interfaces.Command;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class Ping implements Command {
-    private final String HELP = "USAGE: ~ping";
+    private final String HELP = "```USAGE: ~ping```";
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
