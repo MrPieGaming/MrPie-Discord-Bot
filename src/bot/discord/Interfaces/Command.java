@@ -8,7 +8,9 @@ public interface Command {
 
     public void action(String[] args, MessageReceivedEvent event);
 
-    public String help();
+    public static String help() {
+        return null;
+    }
 
     public void executed(boolean success, MessageReceivedEvent event);
 

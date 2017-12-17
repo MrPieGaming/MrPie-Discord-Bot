@@ -1,8 +1,6 @@
 package bot.discord;
 
-import bot.discord.Commands.Champion;
-import bot.discord.Commands.EightBall;
-import bot.discord.Commands.Ping;
+import bot.discord.Commands.*;
 import bot.discord.Interfaces.Command;
 import bot.discord.Listeners.CommandListener;
 import bot.discord.Listeners.ReadyListener;
@@ -31,6 +29,8 @@ public class Main {
         commands.put("ping", new Ping());
         commands.put("champion", new Champion());
         commands.put("8ball", new EightBall());
+        commands.put("help", new Help());
+        commands.put("usage", new Usage());
 
         builder.addEventListener(new ReadyListener(), new CommandListener());
 
