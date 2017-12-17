@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class EightBall implements Command {
 
-    private final String HELP = "```USAGE: ~8ball <YES or NO question>```";
+    private static final String HELP = "```USAGE: ~8ball <YES or NO question>```";
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -70,8 +70,7 @@ public class EightBall implements Command {
         }
     }
 
-    @Override
-    public String help() {
+    public static String help() {
         return HELP;
     }
 

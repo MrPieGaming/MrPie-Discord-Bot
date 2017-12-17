@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Champion implements Command {
 
-    private final String HELP = "```USAGE: ~champion <champion>```";
+    private static final String HELP = "```USAGE: ~champion <champion>```";
 
     private ChampionGGAPIFactory factory = new ChampionGGAPIFactory("10c6ddc6ea7ac9c64d844db9a15ea207", 10);
     private ChampionGGAPI api = factory.buildChampionGGAPI();
@@ -69,8 +69,7 @@ public class Champion implements Command {
         }
     }
 
-    @Override
-    public String help() {
+    public static String help() {
         return HELP;
     }
 
