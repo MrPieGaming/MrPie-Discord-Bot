@@ -19,7 +19,7 @@ public class EightBall implements Command {
             TextChannel channel = event.getTextChannel();
             String[] arguments = event.getMessage().getContent().split(" ");
 
-            String[] goodWords = {"can", "am", "is", "are", "do", "will"};
+            String[] goodWords = {"can", "am", "is", "are", "do", "will", "does"};
             String firstWord = arguments[1];
 
             boolean condition = false;
