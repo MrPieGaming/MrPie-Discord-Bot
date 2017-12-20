@@ -40,7 +40,7 @@ public class Main {
             e.printStackTrace();
         }
     }
-// a commentt
+// a comment
     public static void handleCommand(CommandParser.CommandContainer cmd) {
         if (commands.containsKey(cmd.invoke)) {
             boolean safe = commands.get(cmd.invoke).called(cmd.args, cmd.event);
