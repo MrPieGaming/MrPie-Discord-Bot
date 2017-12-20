@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(String[] args) {
         JDABuilder builder = new JDABuilder(AccountType.BOT);
-        builder.setToken("Mzg5MTkxNjUzNzUzMDk0MTU0.DQ3-fw.vzIeMa2dgFJ22ZzTQcicXKPetBY").setAutoReconnect(true).setStatus(OnlineStatus.ONLINE);
+        builder.setToken(APIKey.returnAPIKey()).setAutoReconnect(true).setStatus(OnlineStatus.ONLINE);
 
         commands.put("ping", new Ping());
         commands.put("champion", new Champion());
