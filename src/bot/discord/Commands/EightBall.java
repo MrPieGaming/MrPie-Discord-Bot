@@ -15,7 +15,7 @@ public class EightBall implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (event.getTextChannel().getId().equals("389552298293985304") || !(event.getGuild().getId().equals("307656057830768640"))) {
+        if (event.getTextChannel().getId().equals("392826364283060225") || !(event.getGuild().getId().equals("307656057830768640"))) {
             TextChannel channel = event.getTextChannel();
             String[] arguments = event.getMessage().getContent().split(" ");
 
