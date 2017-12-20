@@ -26,8 +26,3 @@ hs_err_pid*
 .gitignore
 .idea/workspace.xml
 /src/bot/discord/APIKey.java
-src/main/
-src/test/
-target/generated-sources/
-target/maven-archiver/
-target/maven-status/
