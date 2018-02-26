@@ -18,32 +18,34 @@ public class Usage implements Command {
         String message = event.getMessage().getContent();
 
         String[] arguments = message.split(" ");
-        String commandName = arguments[1].toLowerCase();
+        if (arguments.length != 1) {
+            String commandName = arguments[1].toLowerCase();
 
-        TextChannel channel = event.getTextChannel();
+            TextChannel channel = event.getTextChannel();
 
-        switch (commandName) {
-            case "ping": {
-                channel.sendMessage(Ping.help()).queue();
-                break;
+            switch (commandName) {
+                case "ping": {
+                    channel.sendMessage(Ping.help()).queue();
+                    break;
+                }
+                case "champion": {
+                    channel.sendMessage(Champion.help()).queue();
+                    break;
+                }
+                case "8ball": {
+                    channel.sendMessage(EightBall.help()).queue();
+                    break;
+                }
+                case "help": {
+                    channel.sendMessage(Help.help()).queue();
+                    break;
+                }
+                default: {
+                    channel.sendMessage(Usage.help()).queue();
+                    break;
+                }
             }
-            case "champion": {
-                channel.sendMessage(Champion.help()).queue();
-                break;
-            }
-            case "8ball": {
-                channel.sendMessage(EightBall.help()).queue();
-                break;
-            }
-            case "help": {
-                channel.sendMessage(Help.help()).queue();
-                break;
-            }
-            default: {
-                channel.sendMessage(Usage.help()).queue();
-                break;
-            }
-        }
+        } else event.getTextChannel().sendMessage(HELP).queue();
     }
 
     public static String help() {

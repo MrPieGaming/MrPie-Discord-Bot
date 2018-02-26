@@ -16,7 +16,6 @@ public class CommandListener extends ListenerAdapter {
     }
 
     public void onReady(ReadyEvent event) {
-        // Main.log("Status", "Logged in as: " + event.getJDA().getSelfUser().getName());
         System.out.println("Logged in as: " + event.getJDA().getSelfUser().getName());
     }
 

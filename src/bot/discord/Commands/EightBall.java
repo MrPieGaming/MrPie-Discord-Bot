@@ -6,6 +6,8 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class EightBall implements Command {
 
+    private String[] goodWords = {"can", "am", "is", "are", "do", "will", "does", "did"};
+
     private static final String HELP = "```USAGE: ~8ball <YES or NO question>```";
 
     @Override
@@ -15,46 +17,48 @@ public class EightBall implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (event.getTextChannel().getId().equals("392826364283060225") || !(event.getGuild().getId().equals("307656057830768640"))) {
+        if (event.getTextChannel().getId().equals("417821431636951041") || !(event.getGuild().getId().equals("307656057830768640"))) {
             TextChannel channel = event.getTextChannel();
             String[] arguments = event.getMessage().getContent().split(" ");
+            String firstWord;
 
-            String[] goodWords = {"can", "am", "is", "are", "do", "will", "does", "did"};
-            String firstWord = arguments[1];
+            if (arguments.length != 1) {
+                firstWord = arguments[1];
 
-            boolean condition = false;
+                boolean condition = false;
 
-            for (String s : goodWords) {
-                if (s.equalsIgnoreCase(firstWord)) {
-                    condition = true;
-                    break;
-                }
-            }
-
-            if (condition) {
-                int advice = genRandomInt();
-
-                switch (advice) {
-                    case 0: {
-                        channel.sendMessage("Yes").queue();
-                        break;
-                    }
-                    case 1: {
-                        channel.sendMessage("No").queue();
-                        break;
-                    }
-                    case 2: {
-                        channel.sendMessage("I'm not sure").queue();
-                        break;
-                    }
-                    default: {
-                        channel.sendMessage("Something went wrong...").queue();
+                for (String s : goodWords) {
+                    if (s.equalsIgnoreCase(firstWord)) {
+                        condition = true;
                         break;
                     }
                 }
-            } else {
-                channel.sendMessage("That is not a YES or NO question. Try again :)").queue();
-            }
+
+                if (condition) {
+                    int advice = genRandomInt();
+
+                    switch (advice) {
+                        case 0: {
+                            channel.sendMessage("Yes").queue();
+                            break;
+                        }
+                        case 1: {
+                            channel.sendMessage("No").queue();
+                            break;
+                        }
+                        case 2: {
+                            channel.sendMessage("I'm not sure").queue();
+                            break;
+                        }
+                        default: {
+                            channel.sendMessage("Something went wrong...").queue();
+                            break;
+                        }
+                    }
+                } else {
+                    channel.sendMessage("That is not a YES or NO question. Try again :)").queue();
+                }
+            } else channel.sendMessage(HELP).queue();
         }
     }
 

@@ -26,7 +26,7 @@ public class Champion implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (event.getTextChannel().getId().equals("270699031443931137") || event.getTextChannel().getId().equals("389552298293985304")) {
+        if (event.getTextChannel().getId().equals("270699031443931137") || event.getTextChannel().getId().equals("417821431636951041")) {
             response.waitForResponse();
 
             String message = event.getMessage().getContent();
