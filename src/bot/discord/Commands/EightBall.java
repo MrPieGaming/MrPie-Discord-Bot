@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class EightBall implements Command {
 
-    private String[] goodWords = {"can", "am", "is", "are", "do", "will", "does", "did"};
+    private String[] goodWords = {"can", "am", "is", "are", "do", "will", "does", "did", "should", "was"};
 
     private static final String HELP = "```USAGE: ~8ball <YES or NO question>```";
 
