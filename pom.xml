@@ -95,6 +95,10 @@
             <id>mvnrepository.com</id>
             <url>mvnrepository.com</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
     <dependencies>
         <dependency>
@@ -130,6 +134,11 @@
             <groupId>com.lvack</groupId>
             <artifactId>champion-gg-wrapper</artifactId>
             <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.taycaldwell</groupId>
+            <artifactId>riot-api-java</artifactId>
+            <version>4.0.1</version>
         </dependency>
     </dependencies>
 

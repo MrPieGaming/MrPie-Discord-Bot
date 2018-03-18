@@ -10,9 +10,12 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
+import net.rithms.riot.api.ApiConfig;
 
 import javax.security.auth.login.LoginException;
 import java.util.HashMap;
+
+import static bot.discord.APIKey.getRiotAPIKey;
 
 public class Main {
 
@@ -22,15 +25,18 @@ public class Main {
 
     private static HashMap<String, Command> commands = new HashMap<>();
 
+    private static ApiConfig config = new ApiConfig().setKey(getRiotAPIKey());
+
     public static void main(String[] args) {
         JDABuilder builder = new JDABuilder(AccountType.BOT);
-        builder.setToken(APIKey.returnAPIKey()).setAutoReconnect(true).setStatus(OnlineStatus.ONLINE);
+        builder.setToken(APIKey.getDiscordAPIKey()).setAutoReconnect(true).setStatus(OnlineStatus.ONLINE);
 
         commands.put("ping", new Ping());
         commands.put("champion", new Champion());
         commands.put("8ball", new EightBall());
         commands.put("help", new Help());
         commands.put("usage", new Usage());
+        commands.put("level", new Level());
 
         builder.addEventListener(new ReadyListener(), new CommandListener());
 
@@ -52,5 +58,9 @@ public class Main {
                 commands.get(cmd.invoke).executed(safe, cmd.event);
             }
         }
+    }
+
+    public static ApiConfig getRiotApiConfig() {
+        return config;
     }
 }

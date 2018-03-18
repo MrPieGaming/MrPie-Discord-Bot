@@ -40,6 +40,9 @@ public class Usage implements Command {
                     channel.sendMessage(Help.help()).queue();
                     break;
                 }
+                case "level": {
+                    channel.sendMessage(Level.help()).queue();
+                }
                 default: {
                     channel.sendMessage(Usage.help()).queue();
                     break;
