@@ -3,6 +3,7 @@ package bot.discord;
 import bot.discord.Commands.*;
 import bot.discord.Interfaces.Command;
 import bot.discord.Listeners.CommandListener;
+import bot.discord.Listeners.DogListener;
 import bot.discord.Listeners.ReadyListener;
 import bot.discord.Utils.CommandParser;
 import net.dv8tion.jda.core.AccountType;
@@ -27,6 +28,11 @@ public class Main {
 
     private static ApiConfig config = new ApiConfig().setKey(getRiotAPIKey());
 
+    public static String piesGamingRealmID = "257916519097434113";
+    public static String theFarmID = "307656057830768640";
+    public static String leagueChannelID = "270699031443931137";
+    public static String mrPieFarmChannelID = "417821431636951041";
+
     public static void main(String[] args) {
         JDABuilder builder = new JDABuilder(AccountType.BOT);
         builder.setToken(APIKey.getDiscordAPIKey()).setAutoReconnect(true).setStatus(OnlineStatus.ONLINE);
@@ -37,8 +43,10 @@ public class Main {
         commands.put("help", new Help());
         commands.put("usage", new Usage());
         commands.put("level", new Level());
+        commands.put("mute", new Mute());
+        commands.put("unmute", new Unmute());
 
-        builder.addEventListener(new ReadyListener(), new CommandListener());
+        builder.addEventListener(new ReadyListener(), new CommandListener()/*, new DogListener()*/);
 
         try {
             jda = builder.buildBlocking();

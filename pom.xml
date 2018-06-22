@@ -6,7 +6,7 @@
 
     <groupId>bot.piesgamingrealm</groupId>
     <artifactId>MrPieBot</artifactId>
-    <version>2.4.0</version>
+    <version>2.7.6</version>
 
     <build>
         <sourceDirectory>src</sourceDirectory>
@@ -94,10 +94,6 @@
         <repository>
             <id>mvnrepository.com</id>
             <url>mvnrepository.com</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
         </repository>
     </repositories>
     <dependencies>

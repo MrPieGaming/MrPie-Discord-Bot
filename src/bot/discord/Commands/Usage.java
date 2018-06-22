@@ -25,33 +25,42 @@ public class Usage implements Command {
 
             switch (commandName) {
                 case "ping": {
-                    channel.sendMessage(Ping.help()).queue();
+                    channel.sendMessage(new Ping().help()).queue();
                     break;
                 }
                 case "champion": {
-                    channel.sendMessage(Champion.help()).queue();
+                    channel.sendMessage(new Champion().help()).queue();
                     break;
                 }
                 case "8ball": {
-                    channel.sendMessage(EightBall.help()).queue();
+                    channel.sendMessage(new EightBall().help()).queue();
                     break;
                 }
                 case "help": {
-                    channel.sendMessage(Help.help()).queue();
+                    channel.sendMessage(new Help().help()).queue();
                     break;
                 }
                 case "level": {
-                    channel.sendMessage(Level.help()).queue();
+                    channel.sendMessage(new Level().help()).queue();
+                    break;
+                }
+                case "mute": {
+                    channel.sendMessage(new Mute().help()).queue();
+                    break;
+                }
+                case "unmute": {
+                    channel.sendMessage(new Unmute().help()).queue();
+                    break;
                 }
                 default: {
-                    channel.sendMessage(Usage.help()).queue();
+                    channel.sendMessage(new Usage().help()).queue();
                     break;
                 }
             }
         } else event.getTextChannel().sendMessage(HELP).queue();
     }
 
-    public static String help() {
+    public String help() {
         return HELP;
     }
 
