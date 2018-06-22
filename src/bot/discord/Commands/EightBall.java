@@ -62,7 +62,7 @@ public class EightBall implements Command {
         }
     }
 
-    public static String help() {
+    public String help() {
         return HELP;
     }
 

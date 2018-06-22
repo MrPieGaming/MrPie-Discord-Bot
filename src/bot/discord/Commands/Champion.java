@@ -1,6 +1,7 @@
 package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
+import bot.discord.Main;
 import com.lvack.championggwrapper.ChampionGGAPIFactory;
 import com.lvack.championggwrapper.data.base.role.RoleData;
 import com.lvack.championggwrapper.data.champion.HighLevelChampionData;
@@ -26,7 +27,7 @@ public class Champion implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (event.getTextChannel().getId().equals("270699031443931137") || event.getTextChannel().getId().equals("417821431636951041")) {
+        if (event.getTextChannel().getId().equals(Main.leagueChannelID) || event.getTextChannel().getId().equals(Main.mrPieFarmChannelID)) {
             response.waitForResponse();
 
             String message = event.getMessage().getContent();
@@ -69,7 +70,7 @@ public class Champion implements Command {
         }
     }
 
-    public static String help() {
+    public String help() {
         return HELP;
     }
 

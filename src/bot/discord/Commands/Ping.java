@@ -16,7 +16,7 @@ public class Ping implements Command {
         event.getTextChannel().sendMessage("Pong!").queue();
     }
 
-    public static String help() {
+    public String help() {
         return HELP;
     }
 

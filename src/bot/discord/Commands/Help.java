@@ -21,13 +21,16 @@ public class Help implements Command {
                 "- Ping\n" +
                 "- Champion\n" +
                 "- 8ball\n" +
+                "- Level\n" +
+                "- Mute\n" +
+                "- Unmute\n" +
                 "- Help\n" +
                 "- Usage\n" +
                 "\n**To find the usage of a command, type ~usage <command>**\n" +
                 "```").queue();
     }
 
-    public static String help() {
+    public String help() {
         return HELP;
     }
 

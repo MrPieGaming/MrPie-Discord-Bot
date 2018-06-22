@@ -43,5 +43,6 @@
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.5" level="project" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.14" level="project" />
+    <orderEntry type="library" name="Maven: com.github.taycaldwell:riot-api-java:4.0.1" level="project" />
   </component>
 </module>
