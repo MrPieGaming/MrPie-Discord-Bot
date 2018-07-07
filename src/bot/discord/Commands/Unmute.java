@@ -55,7 +55,7 @@ public class Unmute implements Command {
 
                         for (Member m : members) {
                             if (!m.getUser().equals(event.getAuthor()) && !m.getGuild().getOwner().getUser().equals(m.getUser()))
-                                gc.setMute(m, true).queue();
+                                gc.setMute(m, false).queue();
                         }
 
                         Message msg = event.getTextChannel().sendMessage(success.setDescription("Unmuted \"" + event.getMember().getVoiceState().getChannel().getName() + "\"").build()).complete();
@@ -76,7 +76,7 @@ public class Unmute implements Command {
 
                                 for (Member m : members) {
                                     if (!m.getGuild().getOwner().getUser().equals(m.getUser()) && !m.getUser().equals(event.getAuthor()))
-                                        gc.setMute(m, true).queue();
+                                        gc.setMute(m, false).queue();
                                 }
                             }
 
