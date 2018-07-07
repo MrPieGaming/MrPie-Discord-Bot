@@ -2,17 +2,21 @@ package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
 import bot.discord.Main;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Platform;
 
+import java.awt.*;
 import java.util.NoSuchElementException;
 
 public class Level implements Command {
 
-    private static final String HELP = "```Usage: ~level <region> <summoner name>```";
+    private static final String HELP = "Usage: ~level <region> <summoner name>";
+
+    private EmbedBuilder helpMsg = new EmbedBuilder().setColor(Color.RED).setDescription(help());
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -28,7 +32,7 @@ public class Level implements Command {
             Summoner summoner;
 
             if (mArgs.length < 3) {
-                event.getTextChannel().sendMessage(help()).queue();
+                event.getTextChannel().sendMessage(helpMsg.build()).queue();
             } else {
                 String region = mArgs[1];
                 String summonerName = mArgs[2];

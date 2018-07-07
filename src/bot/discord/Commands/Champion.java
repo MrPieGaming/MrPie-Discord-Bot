@@ -1,5 +1,6 @@
 package bot.discord.Commands;
 
+import bot.discord.APIKey;
 import bot.discord.Interfaces.Command;
 import bot.discord.Main;
 import com.lvack.championggwrapper.ChampionGGAPIFactory;
@@ -13,9 +14,9 @@ import java.util.List;
 
 public class Champion implements Command {
 
-    private static final String HELP = "```USAGE: ~champion <champion>```";
+    private static final String HELP = "USAGE: ~champion <champion>";
 
-    private ChampionGGAPIFactory factory = new ChampionGGAPIFactory("10c6ddc6ea7ac9c64d844db9a15ea207", 10);
+    private ChampionGGAPIFactory factory = new ChampionGGAPIFactory(APIKey.getChampionGGAPIKey(), 10);
     private ChampionGGAPI api = factory.buildChampionGGAPI();
 
     private APIResponse<List<HighLevelChampionData>> response = api.getHighLevelChampionData();
@@ -31,7 +32,7 @@ public class Champion implements Command {
             response.waitForResponse();
 
             String message = event.getMessage().getContent();
-            String[] arguments = message.split(" ");
+            String[] arguments = message.split(" ", 2);
             String arg1 = "Annie";
 
             if (arguments.length > 1) {

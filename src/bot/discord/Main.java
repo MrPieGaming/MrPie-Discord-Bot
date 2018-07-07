@@ -45,6 +45,7 @@ public class Main {
         commands.put("level", new Level());
         commands.put("mute", new Mute());
         commands.put("unmute", new Unmute());
+        commands.put("clear", new Clear());
 
         builder.addEventListener(new ReadyListener(), new CommandListener()/*, new DogListener()*/);
 
