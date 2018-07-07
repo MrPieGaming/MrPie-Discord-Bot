@@ -1,11 +1,16 @@
 package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+
+import java.awt.*;
 
 public class Help implements Command {
 
-    private static final String HELP = "```USAGE: ~help```";
+    private static final String HELP = "Usage: ~help";
+
+    private EmbedBuilder cmds = new EmbedBuilder().setColor(Color.GRAY);
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -14,20 +19,20 @@ public class Help implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        event.getTextChannel().sendMessage("```markdown\n" +
-                "\n" +
-                "# ====MrPie's Bot o' Fun's Commands==== #\n" +
-                "\n" +
-                "- Ping\n" +
-                "- Champion\n" +
-                "- 8ball\n" +
-                "- Level\n" +
-                "- Mute\n" +
-                "- Unmute\n" +
-                "- Help\n" +
-                "- Usage\n" +
-                "\n**To find the usage of a command, type ~usage <command>**\n" +
-                "```").queue();
+        event.getMessage().delete().queue();
+        event.getTextChannel().sendMessage(cmds.setDescription(
+                "====MrPie's Bot o' Fun's Commands====\n" +
+                        "\n" +
+                        "- Ping\n" +
+                        "- Champion\n" +
+                        "- 8ball\n" +
+                        "- Level\n" +
+                        "- Mute\n" +
+                        "- Unmute\n" +
+                        "- Clear\n" +
+                        "- Help\n" +
+                        "- Usage\n" +
+                        "\n**To find the usage of a command, type ~usage <command>**\n").build()).queue();
     }
 
     public String help() {

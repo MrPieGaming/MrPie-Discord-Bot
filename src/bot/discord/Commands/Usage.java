@@ -1,12 +1,18 @@
 package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
+import java.awt.*;
+
 public class Usage implements Command {
 
-    private static final String HELP = "```USAGE: ~usage <command name>```";
+    private static final String HELP = "USAGE: ~usage <command name>";
+
+    private EmbedBuilder usageMsg = new EmbedBuilder().setColor(Color.CYAN);
+    private EmbedBuilder failure = new EmbedBuilder().setColor(Color.RED);
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -25,39 +31,43 @@ public class Usage implements Command {
 
             switch (commandName) {
                 case "ping": {
-                    channel.sendMessage(new Ping().help()).queue();
+                    channel.sendMessage(usageMsg.setDescription(new Ping().help()).build()).queue();
                     break;
                 }
                 case "champion": {
-                    channel.sendMessage(new Champion().help()).queue();
+                    channel.sendMessage(usageMsg.setDescription(new Champion().help()).build()).queue();
                     break;
                 }
                 case "8ball": {
-                    channel.sendMessage(new EightBall().help()).queue();
+                    channel.sendMessage(usageMsg.setDescription(new EightBall().help()).build()).queue();
                     break;
                 }
                 case "help": {
-                    channel.sendMessage(new Help().help()).queue();
+                    channel.sendMessage(usageMsg.setDescription(new Help().help()).build()).queue();
                     break;
                 }
                 case "level": {
-                    channel.sendMessage(new Level().help()).queue();
+                    channel.sendMessage(usageMsg.setDescription(new Level().help()).build()).queue();
                     break;
                 }
                 case "mute": {
-                    channel.sendMessage(new Mute().help()).queue();
+                    channel.sendMessage(usageMsg.setDescription(new Mute().help()).build()).queue();
                     break;
                 }
                 case "unmute": {
-                    channel.sendMessage(new Unmute().help()).queue();
+                    channel.sendMessage(usageMsg.setDescription(new Unmute().help()).build()).queue();
+                    break;
+                }
+                case "clear": {
+                    channel.sendMessage(usageMsg.setDescription(new Clear().help()).build()).queue();
                     break;
                 }
                 default: {
-                    channel.sendMessage(new Usage().help()).queue();
+                    channel.sendMessage(usageMsg.setDescription(help()).build()).queue();
                     break;
                 }
             }
-        } else event.getTextChannel().sendMessage(HELP).queue();
+        } else event.getTextChannel().sendMessage(failure.setDescription(HELP).build()).queue();
     }
 
     public String help() {

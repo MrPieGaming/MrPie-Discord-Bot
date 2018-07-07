@@ -2,17 +2,25 @@ package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
 import bot.discord.Main;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.VoiceChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.managers.GuildController;
 
+import java.awt.*;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Unmute implements Command {
 
-    private static final String HELP = "```USAGE: ~unmute <channel name/current>```";
+    private static final String HELP = "USAGE: ~unmute <channel name/current>";
+
+    private EmbedBuilder success = new EmbedBuilder().setColor(Color.GREEN);
+    private EmbedBuilder failure = new EmbedBuilder().setColor(Color.RED);
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
@@ -47,18 +55,50 @@ public class Unmute implements Command {
 
                         for (Member m : members) {
                             if (!m.getUser().equals(event.getAuthor()) && !m.getGuild().getOwner().getUser().equals(m.getUser()))
-                                gc.setMute(m, false).queue();
+                                gc.setMute(m, true).queue();
                         }
-                    } else {
-                        List<VoiceChannel> specifiedVCs = event.getGuild().getVoiceChannelsByName(argss[1], true);
 
-                        for (VoiceChannel vc : specifiedVCs) {
-                            List<Member> members = vc.getMembers();
+                        Message msg = event.getTextChannel().sendMessage(success.setDescription("Unmuted \"" + event.getMember().getVoiceState().getChannel().getName() + "\"").build()).complete();
 
-                            for (Member m : members) {
-                                if (!m.getGuild().getOwner().getUser().equals(m.getUser()) && !m.getUser().equals(event.getAuthor()))
-                                    gc.setMute(m, true).queue();
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                event.getMessage().delete().queue();
+                                msg.delete().queue();
                             }
+                        }, 3000);
+                    } else {
+                        try {
+                            List<VoiceChannel> specifiedVCs = event.getGuild().getVoiceChannelsByName(argss[1], true);
+
+                            for (VoiceChannel vc : specifiedVCs) {
+                                List<Member> members = vc.getMembers();
+
+                                for (Member m : members) {
+                                    if (!m.getGuild().getOwner().getUser().equals(m.getUser()) && !m.getUser().equals(event.getAuthor()))
+                                        gc.setMute(m, true).queue();
+                                }
+                            }
+
+                            Message msg = event.getTextChannel().sendMessage(success.setDescription("Unmuted \"" + specifiedVCs.get(0).getName() + "\"").build()).complete();
+
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    event.getMessage().delete().queue();
+                                    msg.delete().queue();
+                                }
+                            }, 3000);
+                        } catch (Exception e) {
+                            Message msg = event.getTextChannel().sendMessage(failure.setDescription("Try entering a different channel name").build()).complete();
+
+                            new Timer().schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    event.getMessage().delete().queue();
+                                    msg.delete().queue();
+                                }
+                            }, 3000);
                         }
                     }
                 }

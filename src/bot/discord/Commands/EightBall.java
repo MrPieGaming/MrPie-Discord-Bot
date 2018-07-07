@@ -8,7 +8,7 @@ public class EightBall implements Command {
 
     private String[] goodWords = {"can", "am", "is", "are", "do", "will", "does", "did", "should", "was"};
 
-    private static final String HELP = "```USAGE: ~8ball <YES or NO question>```";
+    private static final String HELP = "USAGE: ~8ball <YES or NO question>";
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {

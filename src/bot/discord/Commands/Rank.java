@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 
 public class Rank implements Command { // this command DOES NOT work
 
-    private static final String HELP = "```Usage: ~rank <region> <summoner name>```";
+    private static final String HELP = "Usage: ~rank <region> <summoner name>";
 
     @Override
     public boolean called(String[] args, MessageReceivedEvent event) {
