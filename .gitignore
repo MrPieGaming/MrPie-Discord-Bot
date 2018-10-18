@@ -24,5 +24,15 @@
 hs_err_pid*
 
 .gitignore
-.idea/workspace.xml
+.idea/
 /src/bot/discord/APIKey.java
+.idea/libraries/Maven__com_github_taycaldwell_riot_api_java_4_0_1.xml
+.idea/libraries/Maven__commons_codec_commons_codec_1_10.xml
+.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml
+.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_6.xml
+.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_10.xml
+src/main/
+src/test/
+target/generated-sources/
+target/maven-archiver/
+target/maven-status/
