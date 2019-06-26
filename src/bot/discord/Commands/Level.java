@@ -3,6 +3,7 @@ package bot.discord.Commands;
 import bot.discord.Interfaces.Command;
 import bot.discord.Main;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
@@ -11,6 +12,8 @@ import net.rithms.riot.constant.Platform;
 
 import java.awt.*;
 import java.util.NoSuchElementException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Level implements Command {
 
@@ -25,25 +28,33 @@ public class Level implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (event.getTextChannel().getId().equals(Main.leagueChannelID) || event.getTextChannel().getId().equals(Main.mrPieFarmChannelID) || !event.getGuild().getId().equals(Main.theFarmID) || !event.getGuild().getId().equals(Main.piesGamingRealmID)) {
-            RiotApi api = new RiotApi(Main.getRiotApiConfig());
-            String message = event.getMessage().getContent();
-            String[] mArgs = message.split(" ", 3);
-            Summoner summoner;
+        RiotApi api = new RiotApi(Main.getRiotApiConfig());
+        String message = event.getMessage().getContent();
+        String[] mArgs = message.split(" ", 3);
+        Summoner summoner;
 
-            if (mArgs.length < 3) {
-                event.getTextChannel().sendMessage(helpMsg.build()).queue();
-            } else {
-                String region = mArgs[1];
-                String summonerName = mArgs[2];
-                try {
-                    summoner = api.getSummonerByName(Platform.getPlatformByName(region.toUpperCase()), summonerName);
-                    event.getChannel().sendMessage("**" + summoner.getName() + " **Level: " + summoner.getSummonerLevel()).queue();
-                } catch (RiotApiException | NoSuchElementException e) {
-                    event.getChannel().sendMessage("Try entering a different region and/or summoner").queue();
-                }
+        if (mArgs.length < 3) {
+            Main.usageError(event.getChannel(), help());
+        } else {
+            String region = mArgs[1];
+            String summonerName = mArgs[2];
+            try {
+                summoner = api.getSummonerByName(Platform.getPlatformByName(region.toUpperCase()), summonerName);
+                event.getChannel().sendMessage("**" + summoner.getName() + " **Level: " + summoner.getSummonerLevel()).queue();
+            } catch (RiotApiException | NoSuchElementException e) {
+                //e.printStackTrace();
+                Message msg = event.getChannel().sendMessage(new EmbedBuilder().setColor(Color.RED).setDescription("Try entering a different **region** and/or **summoner name**").build()).complete();
+
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        event.getMessage().delete().queue();
+                        msg.delete().queue();
+                    }
+                }, 3000);
             }
         }
+
     }
 
     @Override

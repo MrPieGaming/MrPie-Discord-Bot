@@ -2,17 +2,21 @@ package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
 import bot.discord.Main;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
-import net.rithms.riot.api.endpoints.league.dto.LeagueItem;
-import net.rithms.riot.api.endpoints.league.dto.LeagueList;
+import net.rithms.riot.api.endpoints.league.dto.LeagueEntry;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
 import net.rithms.riot.constant.Platform;
 
-import java.util.List;
+import java.awt.*;
 import java.util.NoSuchElementException;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Rank implements Command { // this command DOES NOT work
 
@@ -25,32 +29,41 @@ public class Rank implements Command { // this command DOES NOT work
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        if (event.getTextChannel().getId().equals("270699031443931137") || event.getTextChannel().getId().equals("417821431636951041") || !event.getGuild().getId().equals("307656057830768640") || !event.getGuild().getId().equals("257916519097434113")) {
-            RiotApi api = new RiotApi(Main.getRiotApiConfig());
-            String message = event.getMessage().getContent();
-            String[] mArgs = message.split(" ", 3);
-            Summoner summoner;
+        RiotApi api = new RiotApi(Main.getRiotApiConfig());
+        String message = event.getMessage().getContent();
+        String[] mArgs = message.split(" ", 3);
+        Summoner summoner;
 
-            if (mArgs.length < 3) {
-                event.getTextChannel().sendMessage(help()).queue();
-            } else {
-                String region = mArgs[1];
-                String summonerName = mArgs[2];
+        if (mArgs.length < 3) {
+            Main.usageError(event.getChannel(), help());
+        } else {
+            String region = mArgs[1];
+            String summonerName = mArgs[2];
 
-                try {
-                    summoner = api.getSummonerByName(Platform.getPlatformByName(region), summonerName);
-                    List<LeagueList> leagues = api.getLeagueBySummonerId(Platform.getPlatformByName(region), summoner.getId());
+            try {
+                summoner = api.getSummonerByName(Platform.getPlatformByName(region.toUpperCase()), summonerName);
+                Set<LeagueEntry> leagues = api.getLeagueEntriesBySummonerId(Platform.getPlatformByName(region.toUpperCase()), summoner.getId());
 
-                    for (LeagueList l : leagues) {
-                        if (l.getQueue().equals(LeagueQueue.RANKED_SOLO_5x5.name())) {
-                            LeagueItem entry = l.getEntries().get(0);
-                            event.getTextChannel().sendMessage("**" + summoner.getName() + "** Rank: " + "__" + l.getTier() + " " + entry.getRank() + "__ " + entry.getLeaguePoints() + " LP").queue();
-                        }
-                    }
-                } catch (RiotApiException | NoSuchElementException e) {
-                    event.getChannel().sendMessage("Try entering a different region and/or summoner").queue();
-                    e.printStackTrace();
+                if (leagues.isEmpty()) {
+                    event.getTextChannel().sendMessage(summoner.getName() + " is currently __Unranked__").queue();
                 }
+
+                for (LeagueEntry l : leagues) {
+                    if (l.getQueueType().equals(LeagueQueue.RANKED_SOLO_5x5.name())) {
+                        event.getTextChannel().sendMessage("**" + summoner.getName() + " - ** Rank: " + "__" + l.getTier() + " " + l.getRank() + "__ " + l.getLeaguePoints() + " LP").queue();
+                    }
+                }
+            } catch (RiotApiException | NoSuchElementException e) {
+                Message msg = event.getChannel().sendMessage(new EmbedBuilder().setColor(Color.RED).setDescription("Try entering a different **region** and/or **summoner name**").build()).complete();
+
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        event.getMessage().delete().queue();
+                        msg.delete().queue();
+                    }
+                }, 3000);
+                //e.printStackTrace();
             }
         }
     }

@@ -1,6 +1,7 @@
 package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
+import bot.discord.Main;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -62,12 +63,16 @@ public class Usage implements Command {
                     channel.sendMessage(usageMsg.setDescription(new Clear().help()).build()).queue();
                     break;
                 }
+                case "rank": {
+                    channel.sendMessage(usageMsg.setDescription(new Rank().help()).build()).queue();
+                    break;
+                }
                 default: {
-                    channel.sendMessage(usageMsg.setDescription(help()).build()).queue();
+                    channel.sendMessage(failure.setDescription(help()).build()).queue();
                     break;
                 }
             }
-        } else event.getTextChannel().sendMessage(failure.setDescription(HELP).build()).queue();
+        } else Main.usageError(event.getChannel(), help());
     }
 
     public String help() {

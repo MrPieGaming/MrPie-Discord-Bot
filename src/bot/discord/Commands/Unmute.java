@@ -46,7 +46,7 @@ public class Unmute implements Command {
 
             if (allowed) {
                 if (argss.length != 2) {
-                    event.getTextChannel().sendMessage(help()).queue();
+                    Main.usageError(event.getChannel(), help());
                 } else {
                     GuildController gc = new GuildController(event.getGuild());
 

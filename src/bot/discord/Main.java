@@ -6,14 +6,14 @@ import bot.discord.Listeners.CommandListener;
 import bot.discord.Listeners.DogListener;
 import bot.discord.Listeners.ReadyListener;
 import bot.discord.Utils.CommandParser;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.OnlineStatus;
+import net.dv8tion.jda.core.*;
+import net.dv8tion.jda.core.entities.MessageChannel;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.rithms.riot.api.ApiConfig;
 
 import javax.security.auth.login.LoginException;
+import java.awt.*;
 import java.util.HashMap;
 
 import static bot.discord.APIKey.getRiotAPIKey;
@@ -46,6 +46,7 @@ public class Main {
         commands.put("mute", new Mute());
         commands.put("unmute", new Unmute());
         commands.put("clear", new Clear());
+        commands.put("rank", new Rank());
 
         builder.addEventListener(new ReadyListener(), new CommandListener()/*, new DogListener()*/);
 
@@ -71,5 +72,10 @@ public class Main {
 
     public static ApiConfig getRiotApiConfig() {
         return config;
+    }
+
+    public static void usageError(MessageChannel channel, String helpMsg) {
+        EmbedBuilder error = new EmbedBuilder().setColor(Color.RED).setDescription(helpMsg);
+        channel.sendMessage(error.build()).queue();
     }
 }

@@ -1,5 +1,6 @@
 package bot.discord.Interfaces;
 
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public interface Command {

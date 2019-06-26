@@ -8,8 +8,10 @@ public class CommandParser {
     public CommandContainer parse(String rw, MessageReceivedEvent e) { // this whole thing checks if the command exists
         ArrayList<String> split = new ArrayList<String>();
         String raw = rw;
+
         String beheaded = raw.replaceFirst("~", "");
         String[] splitBeheaded = beheaded.split(" ");
+        
         for (String s : splitBeheaded) split.add(s);
 
         String invoke = split.get(0);
