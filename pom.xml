@@ -6,7 +6,7 @@
 
     <groupId>bot.piesgamingrealm</groupId>
     <artifactId>MrPieBot</artifactId>
-    <version>3.1.2</version>
+    <version>3.3.1</version>
 
     <build>
         <sourceDirectory>src</sourceDirectory>
@@ -132,9 +132,9 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.github.taycaldwell</groupId>
+            <groupId>com.github.rithms</groupId>
             <artifactId>riot-api-java</artifactId>
-            <version>4.0.1</version>
+            <version>4.3.0</version>
         </dependency>
     </dependencies>
 

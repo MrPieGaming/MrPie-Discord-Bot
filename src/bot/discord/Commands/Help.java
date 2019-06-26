@@ -2,6 +2,7 @@ package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 import java.awt.*;
@@ -27,6 +28,7 @@ public class Help implements Command {
                         "- Champion\n" +
                         "- 8ball\n" +
                         "- Level\n" +
+                        "- Rank\n" +
                         "- Mute\n" +
                         "- Unmute\n" +
                         "- Clear\n" +

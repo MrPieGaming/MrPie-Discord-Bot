@@ -1,6 +1,7 @@
 package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
+import bot.discord.Main;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageHistory;
@@ -28,7 +29,7 @@ public class Clear implements Command {
         String message = event.getMessage().getContent();
         String[] mArgs = message.split(" ", 2);
 
-        if (mArgs.length < 2) event.getChannel().sendMessage(error.setDescription(help()).build()).queue();
+        if (mArgs.length < 2) Main.usageError(event.getChannel(), help());
         else {
             try {
                 int numOfMessages = Integer.parseInt(mArgs[1]);
@@ -71,7 +72,7 @@ public class Clear implements Command {
                     }, 5000);
                 }
             } catch (NumberFormatException e) {
-                event.getChannel().sendMessage(error.setDescription(help()).build()).queue();
+                Main.usageError(event.getChannel(), help());
             }
         }
     }
