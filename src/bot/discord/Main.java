@@ -5,9 +5,11 @@ import bot.discord.Interfaces.Command;
 import bot.discord.Listeners.CommandListener;
 import bot.discord.Listeners.ReadyListener;
 import bot.discord.Utils.CommandParser;
-import net.dv8tion.jda.api.*;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.exceptions.RateLimitedException;
 import net.rithms.riot.api.ApiConfig;
 
 import javax.security.auth.login.LoginException;

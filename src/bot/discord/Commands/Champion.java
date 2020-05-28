@@ -9,7 +9,6 @@ import com.lvack.championggwrapper.data.champion.HighLevelChampionData;
 import com.lvack.championggwrapper.retrofit.APIResponse;
 import com.lvack.championggwrapper.retrofit.ChampionGGAPI;
 import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
