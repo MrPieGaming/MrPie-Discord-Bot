@@ -2,9 +2,9 @@ package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
 import bot.discord.Main;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.awt.*;
 
@@ -22,7 +22,7 @@ public class Usage implements Command {
 
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
-        String message = event.getMessage().getContent();
+        String message = event.getMessage().getContentRaw();
 
         String[] arguments = message.split(" ");
         if (arguments.length != 1) {

@@ -1,6 +1,6 @@
 package bot.discord.Utils;
 
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ public class CommandParser {
 
         String beheaded = raw.replaceFirst("~", "");
         String[] splitBeheaded = beheaded.split(" ");
-        
+
         for (String s : splitBeheaded) split.add(s);
 
         String invoke = split.get(0);

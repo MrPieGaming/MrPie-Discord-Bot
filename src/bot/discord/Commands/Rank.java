@@ -2,9 +2,9 @@ package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
 import bot.discord.Main;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.endpoints.league.constant.LeagueQueue;
@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Rank implements Command { // this command DOES NOT work
+public class Rank implements Command {
 
     private static final String HELP = "Usage: ~rank <region> <summoner name>";
 
@@ -30,7 +30,7 @@ public class Rank implements Command { // this command DOES NOT work
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         RiotApi api = new RiotApi(Main.getRiotApiConfig());
-        String message = event.getMessage().getContent();
+        String message = event.getMessage().getContentRaw();
         String[] mArgs = message.split(" ", 3);
         Summoner summoner;
 
@@ -43,6 +43,8 @@ public class Rank implements Command { // this command DOES NOT work
             try {
                 summoner = api.getSummonerByName(Platform.getPlatformByName(region.toUpperCase()), summonerName);
                 Set<LeagueEntry> leagues = api.getLeagueEntriesBySummonerId(Platform.getPlatformByName(region.toUpperCase()), summoner.getId());
+
+                //MatchList matchList = api.getMatchListByAccountId(Platform.getPlatformByName(region.toUpperCase()), summoner.getAccountId());
 
                 if (leagues.isEmpty()) {
                     event.getTextChannel().sendMessage(summoner.getName() + " is currently __Unranked__").queue();

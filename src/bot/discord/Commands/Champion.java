@@ -8,9 +8,9 @@ import com.lvack.championggwrapper.data.base.role.RoleData;
 import com.lvack.championggwrapper.data.champion.HighLevelChampionData;
 import com.lvack.championggwrapper.retrofit.APIResponse;
 import com.lvack.championggwrapper.retrofit.ChampionGGAPI;
-import net.dv8tion.jda.core.entities.MessageChannel;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class Champion implements Command {
     public void action(String[] args, MessageReceivedEvent event) {
         response.waitForResponse();
 
-        String message = event.getMessage().getContent();
+        String message = event.getMessage().getContentRaw();
         String[] arguments = message.split(" ", 2);
         String arg1 = "Annie";
 
