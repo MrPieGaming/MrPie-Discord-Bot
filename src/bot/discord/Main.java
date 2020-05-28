@@ -7,7 +7,6 @@ import bot.discord.Listeners.ReadyListener;
 import bot.discord.Utils.CommandParser;
 import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.exceptions.RateLimitedException;
 import net.rithms.riot.api.ApiConfig;
 
 import javax.security.auth.login.LoginException;
