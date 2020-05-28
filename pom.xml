@@ -6,7 +6,7 @@
 
     <groupId>bot.piesgamingrealm</groupId>
     <artifactId>MrPieBot</artifactId>
-    <version>3.3.1</version>
+    <version>4.0.0</version>
 
     <build>
         <sourceDirectory>src</sourceDirectory>
@@ -79,13 +79,9 @@
 
     <repositories>
         <repository>
-            <id>bungeecord-repo</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
-        <repository>
             <id>jcenter</id>
             <name>jcenter-bintray</name>
-            <url>http://jcenter.bintray.com</url>
+            <url>https://jcenter.bintray.com</url>
         </repository>
         <repository>
             <id>jitpack.io</id>
@@ -100,7 +96,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>3.3.0_265</version>
+            <version>4.1.1_155</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -136,6 +132,12 @@
             <artifactId>riot-api-java</artifactId>
             <version>4.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+
     </dependencies>
 
 </project>

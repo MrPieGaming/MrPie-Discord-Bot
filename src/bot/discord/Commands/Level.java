@@ -2,9 +2,9 @@ package bot.discord.Commands;
 
 import bot.discord.Interfaces.Command;
 import bot.discord.Main;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.rithms.riot.api.RiotApi;
 import net.rithms.riot.api.RiotApiException;
 import net.rithms.riot.api.endpoints.summoner.dto.Summoner;
@@ -29,7 +29,7 @@ public class Level implements Command {
     @Override
     public void action(String[] args, MessageReceivedEvent event) {
         RiotApi api = new RiotApi(Main.getRiotApiConfig());
-        String message = event.getMessage().getContent();
+        String message = event.getMessage().getContentRaw();
         String[] mArgs = message.split(" ", 3);
         Summoner summoner;
 
